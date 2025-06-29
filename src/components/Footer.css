@@ -1,20 +1,14 @@
 .footer {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Dark theme footer styling */
-[data-theme="dark"] .footer {
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #020617 100%);
   color: #f1f5f9;
+  position: relative;
+  overflow: hidden;
 }
 
 .footer-logo {
   font-size: 1.8rem;
   font-weight: 700;
-  background: var(--primary-gradient);
+  background: linear-gradient(135deg, #8fa383, #a8b5a0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -87,7 +81,7 @@
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  color: var(--white);
+  color: #ffffff;
   position: relative;
 }
 
@@ -185,7 +179,7 @@
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: var(--white);
+  color: #ffffff;
   font-family: 'Poppins', sans-serif;
   font-size: 0.95rem;
   transition: all 0.3s ease;
@@ -206,7 +200,7 @@
   background: linear-gradient(135deg, #8fa383, #a8b5a0);
   border: none;
   border-radius: 10px;
-  color: var(--white);
+  color: #ffffff;
   font-weight: 500;
   font-family: 'Poppins', sans-serif;
   cursor: pointer;

@@ -69,8 +69,8 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: var(--bg-gradient-light);
-  color: var(--text-primary);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+  color: #1e293b;
   overflow-x: hidden;
   min-height: 100vh;
 }
@@ -114,33 +114,33 @@ html {
 }
 
 .btn-primary {
-  background: var(--primary-gradient);
-  color: var(--white);
-  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--accent-color);
-  border: 2px solid var(--accent-color);
+  color: #3b82f6;
+  border: 2px solid #3b82f6;
 }
 
 .btn-secondary:hover {
-  background: var(--accent-color);
-  color: var(--white);
+  background: #3b82f6;
+  color: #ffffff;
 }
 
 /* Glassmorphism effect */
 .glass {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Fade in animation */
@@ -179,14 +179,14 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--gray-100);
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-color);
+  background: #3b82f6;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-hover);
+  background: #1d4ed8;
 }
