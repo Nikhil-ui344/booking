@@ -57,10 +57,8 @@ const About = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              With over a decade of experience in the travel industry, we specialize in crafting 
-              personalized journeys that go beyond the ordinary. Our expert team carefully curates 
-              each destination to ensure you experience the authentic culture, breathtaking landscapes, 
-              and hidden gems that make every trip truly memorable.
+              We specialize in crafting personalized journeys with authentic experiences, 
+              breathtaking landscapes, and memorable celebrations for your special moments.
             </motion.p>
 
             <motion.div
@@ -70,33 +68,30 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               <div className="feature-item">
-                <div className="feature-icon"></div>
+                <div className="feature-icon">🗺️</div>
                 <div className="feature-content">
                   <h4>Expert Planning</h4>
-                  <p>Meticulously planned itineraries by travel experts</p>
                 </div>
               </div>
 
               <div className="feature-item">
-                <div className="feature-icon"></div>
+                <div className="feature-icon">⭐</div>
                 <div className="feature-content">
                   <h4>Premium Service</h4>
-                  <p>24/7 support and personalized assistance throughout your journey</p>
                 </div>
               </div>
 
               <div className="feature-item">
-                <div className="feature-icon"></div>
+                <div className="feature-icon">🌟</div>
                 <div className="feature-content">
                   <h4>Unique Experiences</h4>
-                  <p>Access to exclusive locations and authentic local experiences</p>
                 </div>
               </div>
+              
               <div className="feature-item">
-                <div className="feature-icon"></div>
+                <div className="feature-icon">🎉</div>
                 <div className="feature-content">
-                  <h4>Events</h4>
-                  <p>Make your special moments more memorable </p>
+                  <h4>Special Events</h4>
                 </div>
               </div>
             </motion.div>

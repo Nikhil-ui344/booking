@@ -2,6 +2,7 @@
   background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 20%, #f59e0b 40%, #d97706 100%);
   position: relative;
   overflow: hidden;
+  padding: 3rem 0; /* Reduced padding */
 }
 
 .celebrations::before {
@@ -20,14 +21,14 @@
 .celebrations-header {
   position: relative;
   z-index: 1;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem; /* Reduced margin */
 }
 
 .celebrations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Smaller min width */
+  gap: 1.5rem; /* Reduced gap */
+  margin-bottom: 3rem; /* Reduced margin */
   position: relative;
   z-index: 1;
 }
@@ -37,10 +38,10 @@
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 25px;
+  border-radius: 20px; /* Reduced border radius */
   overflow: hidden;
   box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 10px 25px rgba(0, 0, 0, 0.08), /* Reduced shadow */
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -72,7 +73,7 @@
 }
 
 .celebration-image {
-  height: 200px;
+  height: 150px;
   position: relative;
   background-size: cover;
   background-position: center;
@@ -139,42 +140,42 @@
 }
 
 .celebration-content {
-  padding: 2rem;
+  padding: 1.25rem;
   position: relative;
   z-index: 2;
 }
 
 .celebration-title {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
 }
 
 .celebration-description {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
 }
 
 .celebration-features {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
 }
 
 .feature-tag {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .feature-more {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #f59e0b;
   font-weight: 600;
   margin-top: 0.3rem;
@@ -528,18 +529,40 @@
 }
 
 @media (max-width: 480px) {
+  .celebrations {
+    padding: 2rem 0;
+  }
+  
+  .celebrations-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
   .celebration-image {
-    height: 150px;
+    height: 120px;
   }
   
   .service-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 2.5rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  
+  .celebration-content {
+    padding: 1rem;
+  }
+  
+  .celebration-title {
+    font-size: 1.1rem;
+  }
+  
+  .celebration-description {
+    font-size: 0.85rem;
   }
   
   .services-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .service-item {

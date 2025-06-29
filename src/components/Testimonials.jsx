@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useState, useEffect } from 'react';
 import './Testimonials.css';
 
 const Testimonials = () => {
@@ -8,13 +9,15 @@ const Testimonials = () => {
     threshold: 0.1
   });
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const testimonials = [
     {
       id: 1,
       name: "Sarah Johnson",
       location: "New York, USA",
       rating: 5,
-      text: "Absolutely incredible experience! The team organized everything perfectly, from accommodation to local guides. Our trip to Coorg was magical.",
+      text: "Absolutely incredible experience! Perfect organization and magical trip to Coorg.",
       avatar: "👩‍💼"
     },
     {
@@ -22,7 +25,7 @@ const Testimonials = () => {
       name: "Rajesh Kumar",
       location: "Mumbai, India",
       rating: 5,
-      text: "Professional service and attention to detail. They understood exactly what we wanted and delivered beyond expectations. Highly recommended!",
+      text: "Professional service and attention to detail. Highly recommended!",
       avatar: "👨‍💻"
     },
     {
@@ -30,7 +33,7 @@ const Testimonials = () => {
       name: "Emily Chen",
       location: "Singapore",
       rating: 5,
-      text: "The personalized itinerary was perfect for our family. Kids loved every moment, and we discovered hidden gems we never would have found ourselves.",
+      text: "Perfect family itinerary. Kids loved every moment and we discovered hidden gems.",
       avatar: "👩‍🏫"
     },
     {
@@ -38,45 +41,32 @@ const Testimonials = () => {
       name: "David Miller",
       location: "London, UK",
       rating: 5,
-      text: "Exceptional value for money. Every destination was carefully selected, and the local experiences were authentic and memorable.",
+      text: "Exceptional value. Every destination was carefully selected and memorable.",
       avatar: "👨‍⚕️"
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
+  // Auto-slide functionality
+  useEffect(() => {
+    if (!inView) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [inView, testimonials.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
-  const titleVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-        ease: "easeOut"
-      }
-    }
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
   };
 
   return (
@@ -84,71 +74,82 @@ const Testimonials = () => {
       <div className="container">
         <motion.div
           className="testimonials-header text-center"
-          variants={titleVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
           ref={ref}
         >
           <h2 className="section-title">What Our Travelers Say</h2>
-          <p className="section-subtitle">
-            Real experiences from real travelers who trusted us with their adventures
-          </p>
         </motion.div>
 
         <motion.div
-          className="testimonials-grid"
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          className="testimonials-slider"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
-          {testimonials.map((testimonial) => (
-            <motion.div
-              key={testimonial.id}
-              className="testimonial-card"
-              variants={itemVariants}
-              whileHover={{ 
-                y: -10, 
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
-            >
-              <div className="testimonial-content">
-                <div className="rating">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="star">⭐</span>
-                  ))}
+          <div className="slider-container">
+            <button className="slider-btn prev-btn" onClick={prevSlide}>
+              ‹
+            </button>
+            
+            <div className="testimonial-display">
+              <motion.div
+                key={currentSlide}
+                className="testimonial-card active"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="testimonial-content">
+                  <div className="rating">
+                    {[...Array(testimonials[currentSlide].rating)].map((_, i) => (
+                      <span key={i} className="star">⭐</span>
+                    ))}
+                  </div>
+                  <blockquote className="testimonial-text">
+                    "{testimonials[currentSlide].text}"
+                  </blockquote>
                 </div>
-                <blockquote className="testimonial-text">
-                  "{testimonial.text}"
-                </blockquote>
-              </div>
-              
-              <div className="testimonial-author">
-                <div className="author-avatar">
-                  <span className="avatar-emoji">{testimonial.avatar}</span>
+                
+                <div className="testimonial-author">
+                  <div className="author-avatar">
+                    <span className="avatar-emoji">{testimonials[currentSlide].avatar}</span>
+                  </div>
+                  <div className="author-info">
+                    <h4 className="author-name">{testimonials[currentSlide].name}</h4>
+                    <p className="author-location">{testimonials[currentSlide].location}</p>
+                  </div>
                 </div>
-                <div className="author-info">
-                  <h4 className="author-name">{testimonial.name}</h4>
-                  <p className="author-location">{testimonial.location}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            </div>
+
+            <button className="slider-btn next-btn" onClick={nextSlide}>
+              ›
+            </button>
+          </div>
+
+          <div className="slider-dots">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                className={`dot ${index === currentSlide ? 'active' : ''}`}
+                onClick={() => goToSlide(index)}
+              />
+            ))}
+          </div>
         </motion.div>
 
         <motion.div
           className="testimonials-stats"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
         >
           <div className="stat-item">
             <span className="stat-number">500+</span>
             <span className="stat-label">Happy Travelers</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-number">50+</span>
-            <span className="stat-label">Destinations</span>
           </div>
           <div className="stat-item">
             <span className="stat-number">4.9</span>
