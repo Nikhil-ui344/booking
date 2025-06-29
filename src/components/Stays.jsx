@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import BookingModal from './BookingModal';
 import './Stays.css';
 
 const Stays = ({ selectedDestination, onClose }) => {
   const [filter, setFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [priceRange, setPriceRange] = useState('all');
+  const [selectedStay, setSelectedStay] = useState(null);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -138,6 +141,16 @@ const Stays = ({ selectedDestination, onClose }) => {
       bathrooms: 2
     }
   ];
+
+  const handleBookNow = (stay) => {
+    setSelectedStay(stay);
+    setIsBookingModalOpen(true);
+  };
+
+  const handleBookingModalClose = () => {
+    setIsBookingModalOpen(false);
+    setSelectedStay(null);
+  };
 
   // Filter stays based on selected destination
   const getFilteredStays = () => {
@@ -361,6 +374,7 @@ const Stays = ({ selectedDestination, onClose }) => {
                       </div>
                       <motion.button
                         className="book-button"
+                        onClick={() => handleBookNow(stay)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -385,6 +399,13 @@ const Stays = ({ selectedDestination, onClose }) => {
             )}
           </motion.div>
         </motion.div>
+
+        {/* Booking Modal */}
+        <BookingModal
+          stay={selectedStay}
+          isOpen={isBookingModalOpen}
+          onClose={handleBookingModalClose}
+        />
       </motion.div>
     </AnimatePresence>
   );

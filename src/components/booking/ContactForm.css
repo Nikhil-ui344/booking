@@ -1,0 +1,387 @@
+.contact-form {
+  background: var(--glass-bg);
+  padding: 1.5rem;
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.form-input,
+.form-textarea {
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--card-border);
+  border-radius: 10px;
+  font-size: 1rem;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.form-input.error,
+.form-textarea.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Contact Preferences */
+.contact-preferences {
+  background: var(--card-bg);
+  padding: 1.2rem;
+  border-radius: 15px;
+  border: 1px solid var(--card-border);
+}
+
+.contact-preferences h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.preference-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.preference-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem;
+  background: var(--glass-bg);
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+}
+
+.preference-icon {
+  font-size: 1.2rem;
+}
+
+.preference-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.preference-info strong {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.preference-info span {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+/* Booking Terms */
+.booking-terms {
+  background: var(--card-bg);
+  padding: 1.2rem;
+  border-radius: 15px;
+  border: 1px solid var(--card-border);
+}
+
+.booking-terms h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.terms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.term-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.6rem;
+  background: var(--glass-bg);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.term-icon {
+  color: #10b981;
+  font-size: 0.9rem;
+  margin-top: 0.1rem;
+}
+
+/* Consent Section */
+.consent-section {
+  background: var(--card-bg);
+  padding: 1.2rem;
+  border-radius: 15px;
+  border: 1px solid var(--card-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.consent-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.consent-item input[type="checkbox"] {
+  margin-top: 0.2rem;
+  transform: scale(1.2);
+  accent-color: var(--accent-color);
+}
+
+.consent-item label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.link {
+  color: var(--accent-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: var(--accent-hover);
+}
+
+/* Submit Button */
+.submit-booking-btn {
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 1.2rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-booking-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.submit-booking-btn:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.loading-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.button-icon {
+  font-size: 1.2rem;
+}
+
+/* Support Info */
+.support-info {
+  background: var(--card-bg);
+  padding: 1.2rem;
+  border-radius: 15px;
+  border: 1px solid var(--card-border);
+  text-align: center;
+}
+
+.support-info h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.support-options {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.support-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.support-icon {
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 1rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-group.full-width {
+    grid-column: span 1;
+  }
+
+  .preference-options {
+    gap: 0.8rem;
+  }
+
+  .preference-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .preference-info {
+    align-items: center;
+  }
+
+  .support-options {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .consent-item {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .consent-item input[type="checkbox"] {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .submit-booking-btn {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .button-content,
+  .loading-content {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .preference-item,
+  .term-item {
+    padding: 0.8rem 0.6rem;
+  }
+}

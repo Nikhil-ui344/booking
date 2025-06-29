@@ -1,0 +1,65 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: var(--scroll-btn-bg, var(--primary-gradient));
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: var(--scroll-btn-shadow, 0 8px 25px rgba(59, 130, 246, 0.3));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.scroll-to-top:hover {
+  box-shadow: var(--scroll-btn-shadow-hover, 0 12px 35px rgba(59, 130, 246, 0.4));
+  transform: translateY(-2px);
+}
+
+.scroll-to-top svg {
+  transition: transform 0.3s ease;
+}
+
+.scroll-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+/* Dark Theme Styles */
+[data-theme="dark"] .scroll-to-top {
+  --scroll-btn-bg: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  --scroll-btn-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  --scroll-btn-shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .scroll-to-top svg {
+    width: 16px;
+    height: 16px;
+  }
+}

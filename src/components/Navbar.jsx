@@ -21,6 +21,7 @@ const Navbar = () => {
     { label: 'About', href: '#about' },
     { label: 'Gallery', href: '#gallery' },
     { label: 'Celebrations', href: '#celebrations' },
+    { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -57,13 +58,15 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div
-          className={`navbar-toggle ${isMobileMenuOpen ? 'active' : ''}`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
+        <div className="navbar-actions">
+          <div
+            className={`navbar-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       </div>
     </motion.nav>

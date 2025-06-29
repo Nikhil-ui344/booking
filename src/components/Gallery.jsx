@@ -4,61 +4,35 @@ import { useInView } from 'react-intersection-observer';
 import './Gallery.css';
 
 const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
 
-  // Sample gallery images with placeholder backgrounds
-  const galleryImages = [
+  // Gallery locations with their photos
+  const galleryLocations = [
     {
       id: 1,
-      title: 'Coorg Hills',
-      category: 'Nature',
-      bgClass: 'gallery-img-1'
+      name: 'Coorg',
+      bgClass: 'coorg-location',
+      photos: [
+        { id: 1, title: 'Kumara Parvatha Peak', src: '/src/assets/images/Kumara Parvatha Hill.jpeg' },
+        { id: 2, title: 'Coffee Plantations', bgClass: 'coorg-coffee' },
+        { id: 3, title: 'Misty Hills', bgClass: 'coorg-hills' },
+        { id: 4, title: 'Abbey Falls', bgClass: 'coorg-falls' }
+      ]
     },
     {
       id: 2,
-      title: 'Beach Paradise',
-      category: 'Beach',
-      bgClass: 'gallery-img-2'
-    },
-    {
-      id: 3,
-      title: 'Temple Architecture',
-      category: 'Culture',
-      bgClass: 'gallery-img-3'
-    },
-    {
-      id: 4,
-      title: 'Mountain Views',
-      category: 'Adventure',
-      bgClass: 'gallery-img-4'
-    },
-    {
-      id: 5,
-      title: 'Local Cuisine',
-      category: 'Food',
-      bgClass: 'gallery-img-5'
-    },
-    {
-      id: 6,
-      title: 'Traditional Dance',
-      category: 'Culture',
-      bgClass: 'gallery-img-6'
-    },
-    {
-      id: 7,
-      title: 'Sunset Views',
-      category: 'Nature',
-      bgClass: 'gallery-img-7'
-    },
-    {
-      id: 8,
-      title: 'Adventure Sports',
-      category: 'Adventure',
-      bgClass: 'gallery-img-8'
+      name: 'Udupi',
+      bgClass: 'udupi-location',
+      photos: [
+        { id: 1, title: 'Udupi Temple', src: '/src/assets/images/udupi.jpeg' },
+        { id: 2, title: 'Malpe Beach', bgClass: 'udupi-beach' },
+        { id: 3, title: 'Krishna Temple', bgClass: 'udupi-temple' },
+        { id: 4, title: 'Coastal Views', bgClass: 'udupi-coast' }
+      ]
     }
   ];
 
@@ -67,14 +41,14 @@ const Gallery = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.3,
         delayChildren: 0.3
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 30 },
+    hidden: { opacity: 0, scale: 0.9, y: 40 },
     visible: {
       opacity: 1,
       scale: 1,
@@ -86,13 +60,13 @@ const Gallery = () => {
     }
   };
 
-  const titleVariants = {
-    hidden: { opacity: 0, y: 40 },
+  const photoVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
-      y: 0,
+      scale: 1,
       transition: {
-        duration: 1,
+        duration: 0.5,
         ease: "easeOut"
       }
     }
@@ -103,37 +77,37 @@ const Gallery = () => {
       <div className="container">
         <motion.div
           className="gallery-header text-center"
-          variants={titleVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
           ref={ref}
         >
-          <h2 className="section-title">Travel Gallery</h2>
+          <h2 className="section-title">Photo Gallery</h2>
           <p className="section-subtitle">
-            Explore stunning moments captured from our amazing destinations
+            Discover beautiful moments from our destinations
           </p>
         </motion.div>
 
         <motion.div
-          className="gallery-grid"
+          className="gallery-locations"
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          {galleryImages.map((image, index) => (
+          {galleryLocations.map((location) => (
             <motion.div
-              key={image.id}
-              className={`gallery-item ${image.bgClass}`}
+              key={location.id}
+              className={`location-card ${location.bgClass}`}
               variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedImage(image)}
+              whileHover={{ scale: 1.02, y: -5 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setSelectedLocation(location)}
             >
-              <div className="gallery-overlay">
-                <div className="gallery-content">
-                  <span className="gallery-category">{image.category}</span>
-                  <h3 className="gallery-title">{image.title}</h3>
-                  <div className="gallery-icon">🔍</div>
+              <div className="location-overlay">
+                <div className="location-content">
+                  <h3 className="location-name">{location.name}</h3>
+                  <span className="photo-count">{location.photos.length} Photos</span>
+                  <div className="view-icon">�</div>
                 </div>
               </div>
             </motion.div>
@@ -141,34 +115,54 @@ const Gallery = () => {
         </motion.div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Photo Gallery Modal */}
       <AnimatePresence>
-        {selectedImage && (
+        {selectedLocation && (
           <motion.div
-            className="lightbox-overlay"
+            className="gallery-modal-overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
+            onClick={() => setSelectedLocation(null)}
           >
             <motion.div
-              className="lightbox-content"
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.5, opacity: 0 }}
+              className="gallery-modal"
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className={`lightbox-image ${selectedImage.bgClass}`}>
+              <div className="modal-header">
+                <h3>{selectedLocation.name} Gallery</h3>
                 <button
-                  className="lightbox-close"
-                  onClick={() => setSelectedImage(null)}
+                  className="modal-close"
+                  onClick={() => setSelectedLocation(null)}
                 >
                   ✕
                 </button>
-                <div className="lightbox-info">
-                  <span className="lightbox-category">{selectedImage.category}</span>
-                  <h3 className="lightbox-title">{selectedImage.title}</h3>
-                </div>
+              </div>
+              
+              <div className="photos-grid">
+                {selectedLocation.photos.map((photo, index) => (
+                  <motion.div
+                    key={photo.id}
+                    className={`photo-item ${photo.bgClass || ''}`}
+                    variants={photoVariants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {photo.src ? (
+                      <img src={photo.src} alt={photo.title} />
+                    ) : (
+                      <div className="photo-placeholder" />
+                    )}
+                    <div className="photo-overlay">
+                      <span className="photo-title">{photo.title}</span>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </motion.div>

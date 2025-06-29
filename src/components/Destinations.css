@@ -1,5 +1,5 @@
 .destinations {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 30%, #e2e8f0 70%, #cbd5e1 100%);
+  background: var(--section-alt-bg);
   position: relative;
   overflow: hidden;
 }
@@ -11,16 +11,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   z-index: 0;
 }
 
 .section-title {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
-  background: linear-gradient(135deg, #1e293b 0%, #3b82f6 50%, #1d4ed8 100%);
+  background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -67,12 +67,13 @@
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--card-shadow);
   transition: all 0.4s ease;
 }
 
 .destination-card:hover {
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-8px);
 }
 
 /* Background images - Replace these with actual image URLs */

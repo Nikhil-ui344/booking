@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Destinations from './components/Destinations';
@@ -6,11 +6,25 @@ import About from './components/About';
 import Celebrations from './components/Celebrations';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
+import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import LoadingAnimation from './components/LoadingAnimation';
+import ScrollToTop from './components/ScrollToTop';
 import './styles.css';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initial loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     // Smooth scroll polyfill for better browser support
     if (window.CSS && CSS.supports('scroll-behavior', 'smooth')) {
@@ -38,6 +52,14 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className="page-loading-overlay">
+        <LoadingAnimation type="spinner" message="Welcome to your journey..." />
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <Navbar />
@@ -47,8 +69,10 @@ function App() {
       <Celebrations />
       <Gallery />
       <Testimonials />
+      <FAQ />
       <Contact />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }

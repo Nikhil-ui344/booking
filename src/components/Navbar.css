@@ -3,23 +3,23 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--navbar-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--navbar-border);
   z-index: 1000;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 1.2rem 0;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--navbar-shadow);
 }
 
 .navbar-scrolled {
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--glass-bg-strong);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-  box-shadow: 0 6px 35px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 35px rgba(0, 0, 0, 0.2);
   padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .navbar-container {
@@ -125,6 +125,13 @@
 .navbar-cta:hover {
   box-shadow: 0 6px 20px rgba(82, 183, 136, 0.4);
   transform: translateY(-1px);
+}
+
+/* Navbar Actions Container */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .navbar-toggle {
